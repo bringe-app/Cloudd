@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Table_Client]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	username NVARCHAR(20) NOT NULL,
+	LastName NVARCHAR(64) NOT NULL
+)
