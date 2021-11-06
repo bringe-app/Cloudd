@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace Cloudd
 {
-
-    public partial class LoginForm : Form
+    public partial class SignInForm : Form
     {
-        private bool m_mousedown = false;
-        private Point m_lastLocation;
-        public LoginForm()
+        private bool _mousedown;
+        private Point _lastLocation;
+
+        public SignInForm()
         {
             InitializeComponent();
 
@@ -26,77 +26,40 @@ namespace Cloudd
         {
             string username = usernameTextbox.Text;
             string passText = passwordTextbox.Text;
-            if (username == string.Empty || passText == string.Empty)
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(passText))
             {
-                MessageBox.Show("Fill all mandatory fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("One or more of the fields is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             string encryptedPass = Program.GetSha2Hash(passText);
+
             ClientArr clientArr = new ClientArr();
             clientArr.Fill();
+
             foreach (Client client in clientArr)
             {
-                if (client.m_username == username)
+                if (client._username == username)
                 {
-                    if (client.m_password != encryptedPass)
+                    if (client._password != encryptedPass)
                     {
-                        MessageBox.Show("Incorrect Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("The password that you've entered is wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("Successfully logged in, moving to clients page", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Successfully signed in to your account", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         Hide();
                         new ClientsForm().ShowDialog();
                         Close();
                     }
                 }
             }
-            MessageBox.Show($"Failed to find user \"{username}\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            ActiveControl = signUpButton; // it'll focus on the first textbox by default otherwise
+            MessageBox.Show($"User: {username} doesn't exist\nYou maybe typed it wrong, Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void seePasswordButton_Click(object sender, EventArgs e)
-        {
-            passwordTextbox.Focus();
-
-            if (seePasswordButton.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
-                seePasswordButton.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            else
-                seePasswordButton.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-
-            passwordTextbox.UseSystemPasswordChar = !passwordTextbox.UseSystemPasswordChar;
-        }
-
-        private void LoginForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            m_mousedown = true;
-            m_lastLocation = e.Location;
-        }
-        private void LoginForm_MouseUp(object sender, MouseEventArgs e)
-        {
-            m_mousedown = false;
-        }
-        private void LoginForm_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (m_mousedown)
-            {
-                Location = new Point(
-                 (Location.X - m_lastLocation.X) + e.X, (Location.Y - m_lastLocation.Y) + e.Y);
-                Update();
-            }
-        }
-
         private void signUpButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -104,9 +67,43 @@ namespace Cloudd
             Close();
         }
 
+        private void showPasswordButton_Click(object sender, EventArgs e)
+        {
+            passwordTextbox.Focus();
+
+            if (showPasswordButton.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
+                showPasswordButton.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            else
+                showPasswordButton.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+
+            passwordTextbox.UseSystemPasswordChar = !passwordTextbox.UseSystemPasswordChar;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void SignInForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            _mousedown = true;
+            _lastLocation = e.Location;
+        }
+        private void SignInForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            _mousedown = false;
+        }
+        private void SignInForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_mousedown)
+            {
+                Location = new Point(Location.X - _lastLocation.X + e.X, (Location.Y - _lastLocation.Y) + e.Y);
+                Update();
+            }
         }
     }
 }

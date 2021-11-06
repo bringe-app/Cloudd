@@ -1,7 +1,7 @@
 ﻿
 namespace Cloudd
 {
-    partial class LoginForm
+    partial class SignInForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,11 @@ namespace Cloudd
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInForm));
             this.signUpLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
-            this.seePasswordButton = new FontAwesome.Sharp.IconButton();
+            this.showPasswordButton = new FontAwesome.Sharp.IconButton();
             this.exitButton = new FontAwesome.Sharp.IconButton();
             this.minimizeButton = new FontAwesome.Sharp.IconButton();
             this.passwordPanel = new Cloudd.RoundedPanel(this.components);
@@ -83,20 +83,20 @@ namespace Cloudd
             this.usernameLabel.TabIndex = 0;
             this.usernameLabel.Text = "Username:";
             // 
-            // seePasswordButton
+            // showPasswordButton
             // 
-            this.seePasswordButton.FlatAppearance.BorderSize = 0;
-            this.seePasswordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.seePasswordButton.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-            this.seePasswordButton.IconColor = System.Drawing.Color.Black;
-            this.seePasswordButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.seePasswordButton.IconSize = 70;
-            this.seePasswordButton.Location = new System.Drawing.Point(512, 393);
-            this.seePasswordButton.Name = "seePasswordButton";
-            this.seePasswordButton.Size = new System.Drawing.Size(65, 55);
-            this.seePasswordButton.TabIndex = 19;
-            this.seePasswordButton.UseVisualStyleBackColor = true;
-            this.seePasswordButton.Click += new System.EventHandler(this.seePasswordButton_Click);
+            this.showPasswordButton.FlatAppearance.BorderSize = 0;
+            this.showPasswordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showPasswordButton.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            this.showPasswordButton.IconColor = System.Drawing.Color.Black;
+            this.showPasswordButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.showPasswordButton.IconSize = 70;
+            this.showPasswordButton.Location = new System.Drawing.Point(512, 393);
+            this.showPasswordButton.Name = "showPasswordButton";
+            this.showPasswordButton.Size = new System.Drawing.Size(65, 55);
+            this.showPasswordButton.TabIndex = 19;
+            this.showPasswordButton.UseVisualStyleBackColor = true;
+            this.showPasswordButton.Click += new System.EventHandler(this.showPasswordButton_Click);
             // 
             // exitButton
             // 
@@ -206,7 +206,7 @@ namespace Cloudd
             this.signUpButton.UseVisualStyleBackColor = false;
             this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
             // 
-            // LoginForm
+            // SignInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -216,7 +216,7 @@ namespace Cloudd
             this.Controls.Add(this.usernamePanel);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.seePasswordButton);
+            this.Controls.Add(this.showPasswordButton);
             this.Controls.Add(this.signInButton);
             this.Controls.Add(this.signUpButton);
             this.Controls.Add(this.signUpLabel);
@@ -227,13 +227,12 @@ namespace Cloudd
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximumSize = new System.Drawing.Size(596, 876);
             this.MinimumSize = new System.Drawing.Size(596, 876);
-            this.Name = "LoginForm";
+            this.Name = "SignInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cloudd";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SignInForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SignInForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SignInForm_MouseUp);
             this.passwordPanel.ResumeLayout(false);
             this.passwordPanel.PerformLayout();
             this.usernamePanel.ResumeLayout(false);
@@ -250,7 +249,7 @@ namespace Cloudd
         private System.Windows.Forms.Label signUpLabel;
         private System.Windows.Forms.TextBox usernameTextbox;
         private RoundedButton signInButton;
-        private FontAwesome.Sharp.IconButton seePasswordButton;
+        private FontAwesome.Sharp.IconButton showPasswordButton;
         private FontAwesome.Sharp.IconButton exitButton;
         private FontAwesome.Sharp.IconButton minimizeButton;
         private RoundedPanel usernamePanel;

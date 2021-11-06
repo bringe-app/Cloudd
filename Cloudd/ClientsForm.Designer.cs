@@ -176,10 +176,10 @@
             // separatorPanel
             // 
             this.separatorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.separatorPanel.Location = new System.Drawing.Point(456, 2);
+            this.separatorPanel.Location = new System.Drawing.Point(456, -5);
             this.separatorPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Size = new System.Drawing.Size(10, 918);
+            this.separatorPanel.Size = new System.Drawing.Size(10, 922);
             this.separatorPanel.TabIndex = 19;
             // 
             // filterLastnameLabel

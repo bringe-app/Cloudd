@@ -49,8 +49,8 @@ namespace Cloudd.BL
             for (int i = 0; i < this.Count; i++)
             {
                 client = this[i] as Client;
-                if ((client.m_id == id || id == 0) && client.m_lastname.ToLower().StartsWith(lastname.ToLower()) && 
-                    client.m_firstname.ToLower().StartsWith(firstname.ToLower()))
+                if ((client._id == id || id == 0) && client._lastname.ToLower().StartsWith(lastname.ToLower()) && 
+                    client._firstname.ToLower().StartsWith(firstname.ToLower()))
                 {
                     clientArr.Add(client);
                 }
@@ -60,43 +60,43 @@ namespace Cloudd.BL
     }
     public class Client
     {
-        public int m_id;
-        public string m_firstname;
-        public string m_lastname;
-        public string m_username;
-        public string m_password;
-        public string m_email;
-        public string m_gender;
+        public int _id;
+        public string _firstname;
+        public string _lastname;
+        public string _username;
+        public string _password;
+        public string _email;
+        public string _gender;
         public Client(DataRow row)
         {
-            m_id = int.Parse(row["id"].ToString());
-            m_firstname = row["Firstname"].ToString();
-            m_lastname = row["Lastname"].ToString();
-            m_username = row["Username"].ToString();
-            m_password = row["Password"].ToString();
-            m_email = row["Email"].ToString();
-            m_gender = row["Gender"].ToString();
+            _id = int.Parse(row["id"].ToString());
+            _firstname = row["Firstname"].ToString();
+            _lastname = row["Lastname"].ToString();
+            _username = row["Username"].ToString();
+            _password = row["Password"].ToString();
+            _email = row["Email"].ToString();
+            _gender = row["Gender"].ToString();
         }
         public override string ToString()
         {
-            return $"{m_firstname} {m_lastname} ({m_username})";
+            return $"{_firstname} {_lastname} ({_username})";
         }
         public Client(string firstname, string lastname, string username, string password, string email, string gender)
         {
-            m_firstname = firstname; m_lastname = lastname; m_username = username;
-            m_password = password; m_email = email; m_gender = gender;
+            _firstname = firstname; _lastname = lastname; _username = username;
+            _password = password; _email = email; _gender = gender;
         }
         public bool Insert()
         {
-            return Client_Dal.Insert(m_firstname,m_lastname,m_username, m_password,m_email,m_gender);
+            return Client_Dal.Insert(_firstname,_lastname,_username, _password,_email,_gender);
         }
         public bool Update(string firstname, string lastname, string username, string email)
         {
-            return Client_Dal.Update(m_id,firstname,lastname,username,m_password,email,m_gender);
+            return Client_Dal.Update(_id,firstname,lastname,username,_password,email,_gender);
         }
         public bool Delete()
         {
-            return Client_Dal.Delete(m_id);
+            return Client_Dal.Delete(_id);
         }
     }
 }

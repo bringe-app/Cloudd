@@ -23,7 +23,7 @@ namespace Cloudd
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new LoginForm());
+            Application.Run(new SignInForm());
         }
         [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
