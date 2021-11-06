@@ -30,6 +30,7 @@ namespace Cloudd
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpForm));
             this.emailLabel = new System.Windows.Forms.Label();
             this.minimizeButton = new FontAwesome.Sharp.IconButton();
             this.exitButton = new FontAwesome.Sharp.IconButton();
@@ -364,6 +365,7 @@ namespace Cloudd
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.signUpButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximumSize = new System.Drawing.Size(1091, 1055);
             this.MinimumSize = new System.Drawing.Size(1091, 1055);

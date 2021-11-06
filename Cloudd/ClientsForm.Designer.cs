@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             this.clientsListbox = new System.Windows.Forms.ListBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.idNumberLabel = new System.Windows.Forms.Label();
@@ -513,6 +514,7 @@
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.clientsListbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximumSize = new System.Drawing.Size(1200, 905);
             this.MinimumSize = new System.Drawing.Size(1200, 905);
