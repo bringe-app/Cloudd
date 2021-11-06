@@ -46,7 +46,7 @@ namespace Cloudd.BL
         {
             ClientArr clientArr = new ClientArr();
             Client client;
-            for (int i = 0; i < this.Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 client = this[i] as Client;
                 if ((client._id == id || id == 0) && client._lastname.ToLower().StartsWith(lastname.ToLower()) && 

@@ -8,10 +8,10 @@ namespace Cloudd
 {
     public partial class ClientsForm : Form
     {
-        private bool _mousedown;
-        private Point _lastLocation;
+        private bool _isMouseDown;
+        private Point _formLocation;
         private ClientArr clientArr = new ClientArr();
-        private bool _madeChanges = false;
+        private bool _hasMadeChanges = false;
 
         public ClientsForm()
         {
@@ -32,9 +32,9 @@ namespace Cloudd
         private void ClientToForm(Client client)
         {
             idNumberLabel.Text = "#" + client._id.ToString();
-            usernameTextbox.Text = client._username;
             firstnameTextbox.Text = client._firstname;
             lastnameTextbox.Text = client._lastname;
+            usernameTextbox.Text = client._username;
             emailTextbox.Text = client._email;
         }
 
@@ -49,7 +49,7 @@ namespace Cloudd
 
             if (selectedClient == null)
             {
-                MessageBox.Show("Select a clien first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Select a client first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace Cloudd
                     clientsListbox.Update();
                     MessageBox.Show($"Client #{selectedClient._id}? {selectedClient._username} has been deleted succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clearButton_Click(sender, e);
-                    _madeChanges = true;
+                    _hasMadeChanges = true;
                 }
                 else
                     MessageBox.Show($"Client #{selectedClient._id}? {selectedClient._username} hasn't been deleted succesfully", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -105,7 +105,7 @@ namespace Cloudd
                 clientsListbox.DataSource = clientArr;
                 clientsListbox.Update();
 
-                _madeChanges = true;
+                _hasMadeChanges = true;
             }
             else
                 MessageBox.Show("Failed to update client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -147,7 +147,7 @@ namespace Cloudd
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            if (!_madeChanges)
+            if (!_hasMadeChanges)
             {
                 DialogResult result = MessageBox.Show("Youre chhanges haven't been saved", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -164,19 +164,19 @@ namespace Cloudd
 
         private void ClientsForm_MouseDown(object sender, MouseEventArgs e)
         {
-            _mousedown = true;
-            _lastLocation = e.Location;
+            _isMouseDown = true;
+            _formLocation = e.Location;
         }
         private void ClientsForm_MouseUp(object sender, MouseEventArgs e)
         {
-            _mousedown = false;
+            _isMouseDown = false;
         }
         private void ClientsForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mousedown)
+            if (_isMouseDown)
             {
                 Location = new Point(
-                 (Location.X - _lastLocation.X) + e.X, (Location.Y - _lastLocation.Y) + e.Y);
+                 (Location.X - _formLocation.X) + e.X, (Location.Y - _formLocation.Y) + e.Y);
                 Update();
             }
         }

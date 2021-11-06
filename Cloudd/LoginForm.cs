@@ -7,8 +7,8 @@ namespace Cloudd
 {
     public partial class SignInForm : Form
     {
-        private bool _mousedown;
-        private Point _lastLocation;
+        private bool _isMouseDown;
+        private Point _formLocation;
 
         public SignInForm()
         {
@@ -90,18 +90,18 @@ namespace Cloudd
 
         private void SignInForm_MouseDown(object sender, MouseEventArgs e)
         {
-            _mousedown = true;
-            _lastLocation = e.Location;
+            _isMouseDown = true;
+            _formLocation = e.Location;
         }
         private void SignInForm_MouseUp(object sender, MouseEventArgs e)
         {
-            _mousedown = false;
+            _isMouseDown = false;
         }
         private void SignInForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mousedown)
+            if (_isMouseDown)
             {
-                Location = new Point(Location.X - _lastLocation.X + e.X, (Location.Y - _lastLocation.Y) + e.Y);
+                Location = new Point(Location.X - _formLocation.X + e.X, (Location.Y - _formLocation.Y) + e.Y);
                 Update();
             }
         }
