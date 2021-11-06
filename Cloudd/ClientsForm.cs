@@ -80,35 +80,35 @@ namespace Cloudd
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string errorMsg = "In order to update you have to fill all fields correctly";
+            string msg = "Fill all fields correctly to update selected client";
+
             Client selectedClient = (Client)clientsListbox.SelectedItem;
-            string firstname = firstnameTextbox.Text;
 
-            if (firstname == string.Empty)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            string lastname = lastnameTextbox.Text;
-            if (lastname == string.Empty)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            string username = usernameTextbox.Text;
-            if (username == string.Empty)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            string email = emailTextbox.Text;
-            if (email == string.Empty || !Program.IsEmailAddrValid(email))
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (firstnameTextbox.Text == string.Empty)
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            if (selectedClient.Update(firstname, lastname, username, email))
+            if (lastnameTextbox.Text == string.Empty)
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (usernameTextbox.Text == string.Empty)
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (emailTextbox.Text == string.Empty || !Program.IsEmailAddrValid(emailTextbox.Text))
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (selectedClient.Update(firstnameTextbox.Text, lastnameTextbox.Text, usernameTextbox.Text, emailTextbox.Text))
             {
-                MessageBox.Show("Successfully updated client", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Client's updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 clientArr = new ClientArr();
                 clientArr.Fill();
                 clientsListbox.DataSource = clientArr;
                 clientsListbox.Update();
+
                 _madeChanges = true;
             }
             else
-            {
                 MessageBox.Show("Failed to update client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
             return;
         }
