@@ -4,11 +4,24 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Cloudd.DAL;
 
 namespace Cloudd.BL
 {
     public class ClientArr : ArrayList
     {
+        public bool DoesExist(City city)
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                if ((this[i] as Client)._city.Id == city.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void Fill()
         {
             //להביא מה-DAL טבלה מלאה בכל הלקוחות
@@ -35,6 +48,7 @@ namespace Cloudd.BL
 
             DataRow dataRow;
             Client curClient;
+
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 dataRow = dataTable.Rows[i];
@@ -42,10 +56,12 @@ namespace Cloudd.BL
                 Add(curClient);
             }
         }
+
         public ClientArr Filter(int id, string firstname, string lastname)
         {
             ClientArr clientArr = new ClientArr();
             Client client;
+
             for (int i = 0; i < Count; i++)
             {
                 client = this[i] as Client;
@@ -55,6 +71,7 @@ namespace Cloudd.BL
                     clientArr.Add(client);
                 }
             }
+
             return clientArr;
         }
     }
@@ -67,6 +84,8 @@ namespace Cloudd.BL
         public string _password;
         public string _email;
         public string _gender;
+        public City _city;
+
         public Client(DataRow row)
         {
             _id = int.Parse(row["id"].ToString());
@@ -76,6 +95,7 @@ namespace Cloudd.BL
             _password = row["Password"].ToString();
             _email = row["Email"].ToString();
             _gender = row["Gender"].ToString();
+            _city = new City(row.GetParentRow("ClientCity"));
         }
         public override string ToString()
         {
@@ -88,11 +108,11 @@ namespace Cloudd.BL
         }
         public bool Insert()
         {
-            return Client_Dal.Insert(_firstname,_lastname,_username, _password,_email,_gender);
+            return Client_Dal.Insert(_firstname, _lastname, _username, _password, _email, _gender);
         }
-        public bool Update(string firstname, string lastname, string username, string email)
+        public bool Update(string firstname, string lastname, string username, string email, int city)
         {
-            return Client_Dal.Update(_id,firstname,lastname,username,_password,email,_gender);
+            return Client_Dal.Update(_id, firstname, lastname, username, _password, email, _gender, city);
         }
         public bool Delete()
         {

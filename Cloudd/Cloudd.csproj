@@ -67,19 +67,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\City.cs" />
     <Compile Include="BL\Client.cs" />
-    <Compile Include="BL\Client_DAL.cs" />
-    <Compile Include="ClientsForm.cs">
+    <Compile Include="DAL\City_DAL.cs" />
+    <Compile Include="DAL\Client_DAL.cs" />
+    <Compile Include="UI\ClientsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientsForm.Designer.cs">
+    <Compile Include="UI\ClientsForm.Designer.cs">
       <DependentUpon>ClientsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\DAL.cs" />
-    <Compile Include="LoginForm.cs">
+    <Compile Include="UI\CityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="UI\CityForm.Designer.cs">
+      <DependentUpon>CityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -89,28 +97,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RoundedButton.cs">
+    <Compile Include="Components\RoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RoundedButton.Designer.cs">
+    <Compile Include="Components\RoundedButton.Designer.cs">
       <DependentUpon>RoundedButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="RoundedPanel.cs">
+    <Compile Include="Components\RoundedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RoundedPanel.Designer.cs">
+    <Compile Include="Components\RoundedPanel.Designer.cs">
       <DependentUpon>RoundedPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="SignUpForm.cs">
+    <Compile Include="UI\SignUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignUpForm.Designer.cs">
+    <Compile Include="UI\SignUpForm.Designer.cs">
       <DependentUpon>SignUpForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ClientsForm.resx">
+    <EmbeddedResource Include="UI\ClientsForm.resx">
       <DependentUpon>ClientsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="UI\CityForm.resx">
+      <DependentUpon>CityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -118,7 +129,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SignUpForm.resx">
+    <EmbeddedResource Include="UI\SignUpForm.resx">
       <DependentUpon>SignUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

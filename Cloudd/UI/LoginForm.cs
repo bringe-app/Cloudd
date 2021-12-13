@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace Cloudd
 {
-    public partial class SignInForm : Form
+    public partial class LoginForm : Form
     {
         private bool _isMouseDown;
         private Point _formLocation;
 
-        public SignInForm()
+        public LoginForm()
         {
             InitializeComponent();
 

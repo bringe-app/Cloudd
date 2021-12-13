@@ -11,6 +11,7 @@ namespace Cloudd
         private bool _isMouseDown;
         private Point _formLocation;
         private ClientArr clientArr = new ClientArr();
+        private CityArr cityArr = new CityArr();
         private bool _hasMadeChanges = false;
 
         public ClientsForm()
@@ -24,9 +25,30 @@ namespace Cloudd
 
             Region = Region.FromHrgn(Program.CreateRoundRectRgn(0, 0, Width + 1, Height + 1, 40, 40));
 
+            ClientArrToForm();
+        }
+
+        private void ClientArrToForm()
+        {
+            clientArr = new ClientArr();
             clientArr.Fill();
             clientsListbox.DataSource = clientArr;
-            clientsListbox.DisplayMember = string.Empty;
+            clientsListbox.Update();
+        }
+        private void CityArrToForm()
+        {
+            cityArr = new CityArr();
+            City defaultCity = new City("בחר ישוב")
+            {
+                Id = -1
+            };
+            cityArr.Add(defaultCity);
+
+
+            cityArr.Fill();
+            citiesComboBox.DataSource = cityArr;
+            citiesComboBox.DisplayMember = "Name";
+            citiesComboBox.ValueMember = "Id";
         }
 
         private void ClientToForm(Client client)
@@ -36,6 +58,8 @@ namespace Cloudd
             lastnameTextbox.Text = client._lastname;
             usernameTextbox.Text = client._username;
             emailTextbox.Text = client._email;
+            if (client._city != null)
+                citiesComboBox.SelectedValue = client._city.Id;
         }
 
         private void listBoxClients_DoubleClick(object sender, EventArgs e)
@@ -77,26 +101,33 @@ namespace Cloudd
             lastnameTextbox.Text = string.Empty;
             usernameTextbox.Text = string.Empty;
             emailTextbox.Text = string.Empty;
+            citiesComboBox.SelectedIndex = -1;
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string msg = "Fill all fields correctly to update selected client";
+            Error:
+                MessageBox.Show("Fill all fields correctly to update selected client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             Client selectedClient = (Client)clientsListbox.SelectedItem;
 
             if (firstnameTextbox.Text == string.Empty)
-                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                goto Error;
 
             if (lastnameTextbox.Text == string.Empty)
-                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                goto Error;
 
             if (usernameTextbox.Text == string.Empty)
-                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                goto Error;
 
             if (emailTextbox.Text == string.Empty || !Program.IsEmailAddrValid(emailTextbox.Text))
-                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                goto Error;
 
-            if (selectedClient.Update(firstnameTextbox.Text, lastnameTextbox.Text, usernameTextbox.Text, emailTextbox.Text))
+            if (!(citiesComboBox.SelectedItem is City city))
+                goto Error;
+            if (city.Id == -1 || !cityArr.IsContains(city.Name))
+                goto Error;
+
+            if (selectedClient.Update(firstnameTextbox.Text, lastnameTextbox.Text, usernameTextbox.Text, emailTextbox.Text, city.Id))
             {
                 MessageBox.Show("Client's updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -156,6 +187,18 @@ namespace Cloudd
             }
             else
                 Close();
+        }
+
+        private void addCityButton_Click(object sender, EventArgs e)
+        {
+            CityForm form = new CityForm();
+            form.FormClosed += new FormClosedEventHandler(CityFormClosed);
+            form.ShowDialog();
+        }
+
+        private void CityFormClosed(object sender, FormClosedEventArgs e)
+        {
+            CityArrToForm();
         }
         private void minimizeButton_Click(object sender, EventArgs e)
         {

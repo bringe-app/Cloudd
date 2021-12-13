@@ -42,13 +42,13 @@ namespace Cloudd
             if (lastnameTextbox.Text.Length < 2)
                 return "Last name must be at least 2 characters long.";
 
-            if (new Regex("^(?=[a-zA-Z0-9._]{4,29}$)(?!.*[_.]{2})[^_.].*[^_.]$").IsMatch(usernameTextbox.Text))
+            if (!new Regex("^(?=[a-zA-Z0-9._]{4,29}$)(?!.*[_.]{2})[^_.].*[^_.]$").IsMatch(usernameTextbox.Text))
                 return "Username must be at least 4 characters long and can't start nor end _ or .\nAnd can't contain special characters.";
 
             if (nameAlreadyUsed(usernameTextbox.Text))
                 return $"{usernameTextbox.Text} is not available";
 
-            if (new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$").IsMatch(passwordTextbox.Text))
+            if (!new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$").IsMatch(passwordTextbox.Text))
                 return "Password must be at least eight characters long with one lowercase letter, one uppercase letter and one digit.";
             
             if (!Program.IsEmailAddrValid(emailTextbox.Text))

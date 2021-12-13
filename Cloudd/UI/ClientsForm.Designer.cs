@@ -62,6 +62,10 @@
             this.saveButton = new Cloudd.RoundedButton(this.components);
             this.clearButton = new Cloudd.RoundedButton(this.components);
             this.deleteButton = new Cloudd.RoundedButton(this.components);
+            this.addCityButton = new Cloudd.RoundedButton(this.components);
+            this.cityPanel = new Cloudd.RoundedPanel(this.components);
+            this.citiesComboBox = new System.Windows.Forms.ComboBox();
+            this.cityLabel = new System.Windows.Forms.Label();
             this.filterIdPanel.SuspendLayout();
             this.filterFirstnamePanel.SuspendLayout();
             this.filterLastnamePanel.SuspendLayout();
@@ -69,6 +73,7 @@
             this.usernamePanel.SuspendLayout();
             this.lastnamePanel.SuspendLayout();
             this.firstnamePanel.SuspendLayout();
+            this.cityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // clientsListbox
@@ -179,7 +184,7 @@
             this.separatorPanel.Location = new System.Drawing.Point(456, -5);
             this.separatorPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Size = new System.Drawing.Size(10, 922);
+            this.separatorPanel.Size = new System.Drawing.Size(10, 1008);
             this.separatorPanel.TabIndex = 19;
             // 
             // filterLastnameLabel
@@ -425,7 +430,7 @@
             this.showClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.showClientsButton.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showClientsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.showClientsButton.Location = new System.Drawing.Point(971, 821);
+            this.showClientsButton.Location = new System.Drawing.Point(972, 916);
             this.showClientsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showClientsButton.Name = "showClientsButton";
             this.showClientsButton.Size = new System.Drawing.Size(216, 70);
@@ -441,7 +446,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.saveButton.Location = new System.Drawing.Point(992, 709);
+            this.saveButton.Location = new System.Drawing.Point(1009, 836);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(150, 70);
@@ -457,7 +462,7 @@
             this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearButton.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.clearButton.Location = new System.Drawing.Point(747, 709);
+            this.clearButton.Location = new System.Drawing.Point(764, 836);
             this.clearButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(150, 70);
@@ -473,7 +478,7 @@
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.deleteButton.Location = new System.Drawing.Point(495, 709);
+            this.deleteButton.Location = new System.Drawing.Point(512, 836);
             this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(150, 70);
@@ -482,12 +487,73 @@
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
+            // addCityButton
+            // 
+            this.addCityButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.addCityButton.CausesValidation = false;
+            this.addCityButton.FlatAppearance.BorderSize = 0;
+            this.addCityButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addCityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addCityButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.addCityButton.Location = new System.Drawing.Point(1074, 742);
+            this.addCityButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.addCityButton.Name = "addCityButton";
+            this.addCityButton.Size = new System.Drawing.Size(68, 67);
+            this.addCityButton.TabIndex = 37;
+            this.addCityButton.Text = "+";
+            this.addCityButton.UseVisualStyleBackColor = false;
+            this.addCityButton.Click += new System.EventHandler(this.addCityButton_Click);
+            // 
+            // cityPanel
+            // 
+            this.cityPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.cityPanel.Controls.Add(this.citiesComboBox);
+            this.cityPanel.Location = new System.Drawing.Point(500, 742);
+            this.cityPanel.Name = "cityPanel";
+            this.cityPanel.Padding = new System.Windows.Forms.Padding(30, 15, 30, 3);
+            this.cityPanel.Size = new System.Drawing.Size(450, 77);
+            this.cityPanel.TabIndex = 38;
+            // 
+            // citiesComboBox
+            // 
+            this.citiesComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.citiesComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.citiesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.citiesComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.citiesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.citiesComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.citiesComboBox.FormattingEnabled = true;
+            this.citiesComboBox.Items.AddRange(new object[] {
+            "Male",
+            "Female ",
+            "Other"});
+            this.citiesComboBox.Location = new System.Drawing.Point(30, 15);
+            this.citiesComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.citiesComboBox.Name = "citiesComboBox";
+            this.citiesComboBox.Size = new System.Drawing.Size(390, 41);
+            this.citiesComboBox.TabIndex = 6;
+            // 
+            // cityLabel
+            // 
+            this.cityLabel.AutoSize = true;
+            this.cityLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cityLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cityLabel.Location = new System.Drawing.Point(505, 702);
+            this.cityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cityLabel.Name = "cityLabel";
+            this.cityLabel.Size = new System.Drawing.Size(78, 37);
+            this.cityLabel.TabIndex = 39;
+            this.cityLabel.Text = "City:";
+            // 
             // ClientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(237)))));
-            this.ClientSize = new System.Drawing.Size(1200, 905);
+            this.ClientSize = new System.Drawing.Size(1200, 1000);
+            this.Controls.Add(this.cityLabel);
+            this.Controls.Add(this.cityPanel);
+            this.Controls.Add(this.addCityButton);
             this.Controls.Add(this.filterIdPanel);
             this.Controls.Add(this.filterFirstnamePanel);
             this.Controls.Add(this.filterLastnamePanel);
@@ -516,8 +582,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(1200, 905);
-            this.MinimumSize = new System.Drawing.Size(1200, 905);
+            this.MaximumSize = new System.Drawing.Size(1200, 1000);
+            this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "ClientsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientsForm";
@@ -538,6 +604,7 @@
             this.lastnamePanel.PerformLayout();
             this.firstnamePanel.ResumeLayout(false);
             this.firstnamePanel.PerformLayout();
+            this.cityPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -577,5 +644,9 @@
         private System.Windows.Forms.TextBox filterFirstnameTextbox;
         private RoundedPanel filterIdPanel;
         private System.Windows.Forms.TextBox filterIdTextbox;
+        private RoundedButton addCityButton;
+        private RoundedPanel cityPanel;
+        private System.Windows.Forms.ComboBox citiesComboBox;
+        private System.Windows.Forms.Label cityLabel;
     }
 }

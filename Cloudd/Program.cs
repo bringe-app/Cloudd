@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Cloudd
@@ -23,7 +23,7 @@ namespace Cloudd
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new SignInForm());
+            Application.Run(new LoginForm());
         }
         [DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
@@ -48,16 +48,9 @@ namespace Cloudd
         }
         public static bool IsEmailAddrValid(string emailAddress)
         {
-            try
-            {
-                MailAddress m = new MailAddress(emailAddress);
-
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
+            return Regex.IsMatch(emailAddress, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                               + "@"
+                                               + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
         }
         public static string GetSha2Hash(string text)
         {
